@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <div>
+        <div>
+            <p> {{ post.published_date }} | Views {{ post.views }} | <strong> Tag </strong> {{ post.tag }} </p>
+        </div>
+        <h3><a href="">{{ post.title }}</a></h3>
+
+        <div class="row">
+            <div class="col-xs-9">
+
+                {% if post.image %}
+                    <img src="/media/{{ post.image }}">
+                {% endif %}
+
+                <p>{{ post.content|linebreaks }}</p>
+                <button class="btn btn-default"
+                        onclick="location.href ='/blog'">Back to Blog
+                </button>
+
+                {% load disqus_tags %}
+                {% set_disqus_title "Hello Commenters" %}
+                {% disqus_show_comments %}
+            </div>
+        </div>
+        <hr>
+{% endblock content %}
